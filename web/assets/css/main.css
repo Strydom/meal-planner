@@ -1,0 +1,45 @@
+/* line 1, C:/Users/Christopher/Documents/GitHub/php-getting-started/web/assets/css/main.scss */
+.jumbotron {
+  background: #532F8C;
+  color: white;
+  padding-bottom: 80px; }
+  /* line 6, C:/Users/Christopher/Documents/GitHub/php-getting-started/web/assets/css/main.scss */
+  .jumbotron .btn-primary {
+    background: #845ac7;
+    border-color: #845ac7; }
+    /* line 10, C:/Users/Christopher/Documents/GitHub/php-getting-started/web/assets/css/main.scss */
+    .jumbotron .btn-primary:hover {
+      background: #7646c1; }
+  /* line 15, C:/Users/Christopher/Documents/GitHub/php-getting-started/web/assets/css/main.scss */
+  .jumbotron p {
+    color: #d9ccee;
+    max-width: 75%;
+    margin: 1em auto 2em; }
+  /* line 21, C:/Users/Christopher/Documents/GitHub/php-getting-started/web/assets/css/main.scss */
+  .jumbotron h1 {
+    font-size: 40px; }
+  /* line 25, C:/Users/Christopher/Documents/GitHub/php-getting-started/web/assets/css/main.scss */
+  .jumbotron .lang-logo {
+    display: block;
+    background: #B01302;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    border: 2px solid white; }
+    /* line 35, C:/Users/Christopher/Documents/GitHub/php-getting-started/web/assets/css/main.scss */
+    .jumbotron .lang-logo img {
+      max-width: 100%; }
+
+/* line 40, C:/Users/Christopher/Documents/GitHub/php-getting-started/web/assets/css/main.scss */
+.navbar + .jumbotron {
+  margin-top: -20px; }
+
+/* line 45, C:/Users/Christopher/Documents/GitHub/php-getting-started/web/assets/css/main.scss */
+.food_item img {
+  height: 250px;
+  width: 250px;
+  border-radius: 50%; }
+
+/*# sourceMappingURL=main.css.map */

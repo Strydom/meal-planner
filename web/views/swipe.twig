@@ -1,0 +1,18 @@
+{% extends "suggestions.twig" %}
+
+{% block display %}
+
+<div class="food_item">
+    <img src="/web/assets/img/{{image}}">
+    
+    <h3>{{name}}</h3>
+    
+    <a type="button" class="btn btn-lg btn-success" href="/web/suggestions/swipe/{{next}}">
+        <span class="glyphicon glyphicon-ok"></span> Like
+    </a>
+    <a type="button" class="btn btn-lg btn-danger" href="/web/suggestions/swipe/{{next}}">
+        <span class="glyphicon glyphicon-remove"></span> Dislike
+    </a>
+</div>
+
+{% endblock %}

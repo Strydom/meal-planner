@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron text-center">
+    <div class="container">
+        <h1>Meal Suggestions</h1>
+        <h3>Based off of your food preferences</h3>
+    </div>
+</div>
+
+<div class="container">
+    <ul class="list-group">
+        {% for meal in meals %}
+        <li class="list-group-item">
+            <img src="{{meal.thumbnail}}">
+            <h3>{{meal.title}}</h3>
+            <a type="button" class="btn btn-lg btn-success" href="#like">
+                <span class="glyphicon glyphicon-ok"></span> Like
+            </a>
+            <a type="button" class="btn btn-lg btn-danger" href="#dislike">
+                <span class="glyphicon glyphicon-remove"></span> Dislike
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

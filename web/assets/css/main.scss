@@ -1,0 +1,50 @@
+.jumbotron {
+    background: #532F8C;
+    color: white;
+    padding-bottom: 80px;
+    
+    .btn-primary {
+        background: #845ac7;
+        border-color: #845ac7;
+        
+        &:hover {
+            background: #7646c1;
+        }
+    }
+    
+    p {
+        color: #d9ccee;
+        max-width: 75%;
+        margin: 1em auto 2em;
+    }
+    
+    h1 {
+        font-size: 40px;
+    }
+    
+    .lang-logo {
+        display: block;
+        background: #B01302;
+        border-radius: 50%;
+        overflow: hidden;
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        border: 2px solid white;
+        
+        img {
+            max-width: 100%;
+        }
+    }
+}
+.navbar + .jumbotron {
+    margin-top: -20px;
+}
+
+.food_item {
+    img {
+        height: 250px;
+        width: 250px;
+        border-radius: 50%;
+    }
+}
