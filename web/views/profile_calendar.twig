@@ -1,0 +1,33 @@
+{% extends "profile.twig" %}
+
+
+{% block profile_tabs %}
+<li role="presentation">
+    <a href="/profile"><span class="glyphicon glyphicon-fire"></span> Current Tasks</a>
+</li>
+
+<li role="presentation">
+    <a href="/profile/ingredients"><span class="glyphicon glyphicon-apple"></span> Liked Ingredients</a>
+</li>
+
+<li role="presentation">
+    <a href="/profile/meals"><span class="glyphicon glyphicon-cutlery"></span> Liked Meals</a>
+</li>
+
+<li role="presentation">
+    <a href="/profile/groups"><span class="glyphicon glyphicon-user"></span> Edit Groups</a>
+</li>
+
+<li role="presentation" class="active">
+    <a href="/profile/calendar"><span class="glyphicon glyphicon-calendar"></span> Your Calendar</a>
+</li>
+{% endblock %}
+
+    
+{% block profile_content %}
+
+<div class="col-md-12">
+    <iframe src="https://calendar.google.com/calendar/embed?src=christopherstormstrydom%40gmail.com&ctz=Europe/London" style="padding: 20px 0; border: 0;" width="100%" height="500" frameborder="0" scrolling="no"></iframe>
+</div>
+
+{% endblock %}

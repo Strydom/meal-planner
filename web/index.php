@@ -18,32 +18,20 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 // Our web handlers
 $app->get('/', function() use($app) {
   $app['monolog']->addDebug('logging output.');
-  return $app['twig']->render('home.twig');
+  return $app->redirect('/profile');
 });
 
-$app->get('/suggestions', function() use($app) {
+$string = file_get_contents("foods.json");
+$foods = json_decode($string, true);
+
+$app->get('/suggestions', function() use($app, $foods) {
   $app['monolog']->addDebug('logging output.');
-  return $app['twig']->render('suggestions.twig');
+  return $app['twig']->render('suggestions.twig', $foods);
 });
 
-
-$foods = [
-    1 => [
-        'name'      => 'Chicken',
-        'image'    => 'chicken.jpg',
-        'next' => 2
-    ],
-    2 => [
-        'name'      => 'Beef',
-        'image'    => 'beef.jpg',
-        'next' => 1
-    ]
-];
-
-
-$app->get('/suggestions/swipe/{id}', function($id) use($app, $foods) {
+$app->get('/suggestions/swipe', function() use($app, $foods) {
     $app['monolog']->addDebug('logging output.');
-    return $app['twig']->render('swipe.twig', $foods[$id]);
+    return $app['twig']->render('swipe.twig', $foods);
 });
 
 $app->get('/suggestions/meals/{ingredients}', function($ingredients) use($app) {
@@ -60,6 +48,31 @@ $app->get('/suggestions/meals/{ingredients}', function($ingredients) use($app) {
     return $app['twig']->render('meal_suggestions.twig', $results);
 });
 
+
+$app->get('/profile', function() use($app) {
+  $app['monolog']->addDebug('logging output.');
+  return $app['twig']->render('profile.twig');
+});
+
+$app->get('/profile/ingredients', function() use($app) {
+  $app['monolog']->addDebug('logging output.');
+  return $app['twig']->render('profile_ingredients.twig');
+});
+
+$app->get('/profile/meals', function() use($app) {
+  $app['monolog']->addDebug('logging output.');
+  return $app['twig']->render('profile_meals.twig');
+});
+
+$app->get('/profile/groups', function() use($app) {
+  $app['monolog']->addDebug('logging output.');
+  return $app['twig']->render('profile_groups.twig');
+});
+
+$app->get('/profile/calendar', function() use($app) {
+  $app['monolog']->addDebug('logging output.');
+  return $app['twig']->render('profile_calendar.twig');
+});
 
 
 $app->run();

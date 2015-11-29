@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron text-center">
+    <div class="container">
+        <h1>Hello Chris!</h1>
+        <h3>This is your profile where you can see all of your liked foods & meals, add friends & groups, track the progress of active meals and update your calendar.</h3>
+    </div>
+</div>
+
+<div class="container">
+    <ul class="nav nav-tabs">
+        {% block profile_tabs %}
+        
+        <li role="presentation" class="active">
+            <a href="/profile"><span class="glyphicon glyphicon-fire"></span> Current Tasks</a>
+        </li>
+        
+        <li role="presentation">
+            <a href="/profile/ingredients"><span class="glyphicon glyphicon-apple"></span> Liked Ingredients</a>
+        </li>
+        
+        <li role="presentation">
+            <a href="/profile/meals"><span class="glyphicon glyphicon-cutlery"></span> Liked Meals</a>
+        </li>
+        
+        <li role="presentation">
+            <a href="/profile/groups"><span class="glyphicon glyphicon-user"></span> Edit Groups</a>
+        </li>
+        
+        <li role="presentation">
+            <a href="/profile/calendar"><span class="glyphicon glyphicon-calendar"></span> Your Calendar</a>
+        </li>
+        
+        {% endblock %}
+    </ul>
+    
+    <div class="row">
+        {% block profile_content %}
+        
+        <div class="col-md-12">
+            <h2>Your Tasks</h2>
+            
+            <hr>
+            <h2>Group Tasks</h2>
+            <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['gantt']}]}"></script>
+            <div id="chart_div"></div>
+        </div>
+        
+        <script>
+            google.load("visualization", "1.1", {packages:["gantt"]});
+            google.setOnLoadCallback(drawChart);
+
+            function minutesToMilliseconds(mins) {
+                return mins * 60 * 1000;
+            }
+
+            function drawChart() {
+
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Task ID');
+                data.addColumn('string', 'Task Name');
+                data.addColumn('date', 'Start Date');
+                data.addColumn('date', 'End Date');
+                data.addColumn('number', 'Duration');
+                data.addColumn('number', 'Percent Complete');
+                data.addColumn('string', 'Dependencies');
+
+                data.addRows([
+                    ['1', 'Clean surfaces', new Date(2015, 0, 1), null, minutesToMilliseconds(5),  0,  null],
+                    ['2', 'Prepare vedge', null, null, minutesToMilliseconds(10), 0, '1'],
+                    ['3', 'Prepare Chicken', null, null, minutesToMilliseconds(10), 0, '1'],
+                    ['4', 'Pre heat oven', null, null, minutesToMilliseconds(5), 0, '1'],
+                    ['5', 'Put Chicken in', null, null, minutesToMilliseconds(50), 0, '3,4'],
+                    ['6', 'Dish up', null, null, minutesToMilliseconds(5), 0, '5'],
+                    ['7', 'Tuck in', null, null, minutesToMilliseconds(30), 0, '6'],
+                    ['8', 'Wash up', null, null, minutesToMilliseconds(10), 0, '7']
+                ]);
+
+                var chart = new google.visualization.GanttChart(document.getElementById('chart_div'));
+
+                chart.draw(data);
+            }
+        </script>
+        
+        <style>
+            svg:not(:root) {
+                overflow: inherit;
+            }
+        </style>
+        
+        {% endblock %}
+    </div>
+</div>
+
+{% endblock %}

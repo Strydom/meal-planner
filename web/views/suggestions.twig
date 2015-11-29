@@ -12,7 +12,7 @@
             <span class="glyphicon glyphicon-th-list"></span> List
         </a>
         
-        <a type="button" class="btn btn-lg btn-default" href="/suggestions/swipe/1">
+        <a type="button" class="btn btn-lg btn-default" href="/suggestions/swipe">
             <span class="glyphicon glyphicon-heart"></span> Individual
         </a>
     </div>
@@ -24,92 +24,15 @@
     
     <div class="row">
         <div class="col-lg-6">
-            <ul class="list-group">
-                <h3>Meats</h3>
-                <li class="list-group-item"><input type="checkbox"> Chicken</input></li>
-                <li class="list-group-item"><input type="checkbox"> Beef</input></li>
-                <li class="list-group-item"><input type="checkbox"> Veal</input></li>
-                <li class="list-group-item"><input type="checkbox"> Turky</input></li>
-                <li class="list-group-item"><input type="checkbox"> Lamb</input></li>
-                <li class="list-group-item"><input type="checkbox"> Pork</input></li>
-                <li class="list-group-item"><input type="checkbox"> Duck</input></li>
-                <li class="list-group-item"><input type="checkbox"> Sheep</input></li>
-                <li class="list-group-item"><input type="checkbox"> Goose</input></li>
-                <li class="list-group-item"><input type="checkbox"> Horse</input></li>
-                <li class="list-group-item"><input type="checkbox"> Game</input></li>
-            </ul>
-            
-            <ul class="list-group">
-                <h3>Sea food</h3>
-                <li class="list-group-item"><input type="checkbox"> Fish</li>
-                <li class="list-group-item"><input type="checkbox"> Shellfish</li>
-                <li class="list-group-item"><input type="checkbox"> Roe</li>
-                <li class="list-group-item"><input type="checkbox"> Echinoderms</li>
-                <li class="list-group-item"><input type="checkbox"> Medusozoa</li>
-            </ul>
-            
-            <ul class="list-group">
-                <h3>Dairy</h3>
-                <li class="list-group-item"><input type="checkbox"> Milk</li>
-                <li class="list-group-item"><input type="checkbox"> Cheese</li>
-                <li class="list-group-item"><input type="checkbox"> Butter</li>
-                <li class="list-group-item"><input type="checkbox"> Yogurt</li>
-                <li class="list-group-item"><input type="checkbox"> Ice cream</li>
-            </ul>
-        </div>
-        
-        <div class="col-lg-6">
-            <ul class="list-group">
-                <h3>Vegetables/Fruits</h3>
-                <li class="list-group-item"><input type="checkbox"> Potato</li>
-                <li class="list-group-item"><input type="checkbox"> Sweet potato</li>
-                <li class="list-group-item"><input type="checkbox"> Carrots</li>
-                <li class="list-group-item"><input type="checkbox"> Peas</li>
-                <li class="list-group-item"><input type="checkbox"> Spinach</li>
-                <li class="list-group-item"><input type="checkbox"> Cabbage</li>
-                <li class="list-group-item"><input type="checkbox"> Turnip</li>
-                <li class="list-group-item"><input type="checkbox"> Radish</li>
-                <li class="list-group-item"><input type="checkbox"> Parsnip</li>
-                <li class="list-group-item"><input type="checkbox"> Beetroot</li>
-                <li class="list-group-item"><input type="checkbox"> Lettuce</li>
-                <li class="list-group-item"><input type="checkbox"> Green Beans</li>
-                <li class="list-group-item"><input type="checkbox"> Aubergine</li>
-                <li class="list-group-item"><input type="checkbox"> Tomato</li>
-                <li class="list-group-item"><input type="checkbox"> Cucumber</li>
-                <li class="list-group-item"><input type="checkbox"> Pumpkin</li>
-                <li class="list-group-item"><input type="checkbox"> Onion</li>
-                <li class="list-group-item"><input type="checkbox"> Garlic</li>
-                <li class="list-group-item"><input type="checkbox"> Leek</li>
-                <li class="list-group-item"><input type="checkbox"> Peppers</li>
-                <li class="list-group-item"><input type="checkbox"> Yam</li>
-                <li class="list-group-item"><input type="checkbox"> Cassava</li>
-                <li class="list-group-item"><input type="checkbox"> Pears</li>
-                <li class="list-group-item"><input type="checkbox"> Apples</li>
-                <li class="list-group-item"><input type="checkbox"> Peaches</li>
-                <li class="list-group-item"><input type="checkbox"> Nectarines</li>
-                <li class="list-group-item"><input type="checkbox"> Plums</li>
-                <li class="list-group-item"><input type="checkbox"> Apricots </li>
-                <li class="list-group-item"><input type="checkbox"> Figs</li>
-                <li class="list-group-item"><input type="checkbox"> Grapes</li>
-                <li class="list-group-item"><input type="checkbox"> Bananas</li>
-                <li class="list-group-item"><input type="checkbox"> Cassava</li>
-            </ul>
-            
-            <ul class="list-group">
-                <h3>Grains</h3>
-                <li class="list-group-item"><input type="checkbox"> Potato wedges</li>
-                <li class="list-group-item"><input type="checkbox"> French fries</li>
-                <li class="list-group-item"><input type="checkbox"> Sweet potato</li>
-                <li class="list-group-item"><input type="checkbox"> Potato</li>
-                <li class="list-group-item"><input type="checkbox"> Carrots</li>
-                <li class="list-group-item"><input type="checkbox"> Peas</li>
-                <li class="list-group-item"><input type="checkbox"> Spinach</li>
-            </ul>
-            
-            <ul class="list-group">
-                <h3>Other</h3>
-                <li class="list-group-item"><input type="checkbox"> Eggs</li>
-            </ul>
+            <form method="post" action="/suggestions">
+                <ul class="list-group">
+                    {% for food in foods %}
+
+                    <li class="list-group-item"><input type="checkbox" value="{{food.name}}"> {{food.name}}</li>
+
+                    {% endfor %}
+                </ul>
+            </form>
         </div>
     </div>
     

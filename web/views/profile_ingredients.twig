@@ -1,0 +1,33 @@
+{% extends "profile.twig" %}
+
+
+{% block profile_tabs %}
+<li role="presentation">
+    <a href="/profile"><span class="glyphicon glyphicon-fire"></span> Current Tasks</a>
+</li>
+
+<li role="presentation" class="active">
+    <a href="/profile/ingredients"><span class="glyphicon glyphicon-apple"></span> Liked Ingredients</a>
+</li>
+
+<li role="presentation">
+    <a href="/profile/meals"><span class="glyphicon glyphicon-cutlery"></span> Liked Meals</a>
+</li>
+
+<li role="presentation">
+    <a href="/profile/groups"><span class="glyphicon glyphicon-user"></span> Edit Groups</a>
+</li>
+
+<li role="presentation">
+    <a href="/profile/calendar"><span class="glyphicon glyphicon-calendar"></span> Your Calendar</a>
+</li>
+{% endblock %}
+
+    
+{% block profile_content %}
+
+<div class="col-md-12">
+    <h2>Ingredients</h2>
+</div>
+
+{% endblock %}
