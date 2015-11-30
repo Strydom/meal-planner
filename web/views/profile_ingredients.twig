@@ -28,6 +28,70 @@
 
 <div class="col-md-12">
     <h2>Ingredients</h2>
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-group"></ul>
+        </div>
+    </div>
+    
+    <script>
+        $(document).ready(function (){
+            load();
+            
+            $('.food_item').click(function () {
+                $(this).find('input').trigger('click');
+            });
+
+            $('.food_item input').click(function (elm) {
+                elm.stopPropagation();
+
+                var checked = [];
+
+                $('input:checkbox').each(function () {
+                    if (this.checked) {
+                        checked.push($(this).val());
+                    }
+                });
+
+                save(checked);
+                color();
+            });
+        });
+        
+        function save(checked) {
+            if (typeof(Storage) !== "undefined") {
+                if (localStorage.preferences) {
+                    localStorage.preferences = checked;
+                } else {
+                    localStorage.setItem("preferences", checked);
+                }
+            }
+        }
+        
+        function load() {
+            if (typeof(Storage) !== "undefined") {
+                if (localStorage.preferences) {
+                    var checked = localStorage.preferences;
+                    checked = checked.split(',');
+                    
+                    for (var i = 0; i < checked.length; i++) {
+                        $('.list-group').append('<li class="list-group-item food_item"><input type="checkbox" value="' + checked[i] + '" checked> ' + checked[i] + '</li>');
+                    }
+                }
+            }
+        }
+        
+        function color() {
+            $('input:checkbox').each(function () {
+                if (this.checked) {
+                    $(this).parent('.food_item').css({background: 'none', color: 'inherit'});
+                } else {
+                    $(this).parent('.food_item').css({background: '#d43f3a', color: '#FFF'});
+                }
+            });
+        }
+    </script>
 </div>
 
 {% endblock %}

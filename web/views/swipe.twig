@@ -2,21 +2,99 @@
 
 {% block display %}
 
+<style>
+    .food_item {
+        display: none;
+    }
+    .message {
+        display: none;
+    }
+</style>
+
 {% for food in foods %}
 
-<div class="food_item">
+<div class="food_item" data-item="{{food.name}}">
     <img src="{{food.img}}">
     
     <h3>{{food.name}}</h3>
     
-    <a type="button" class="btn btn-lg btn-success" href="/suggestions/swipe">
+    <button type="button" class="btn btn-lg btn-success" onclick='like("{{food.name}}")'>
         <span class="glyphicon glyphicon-ok"></span> Like
-    </a>
-    <a type="button" class="btn btn-lg btn-danger" href="/suggestions/swipe/">
+    </button>
+    <button type="button" class="btn btn-lg btn-danger" onclick='dislike("{{food.name}}")'>
         <span class="glyphicon glyphicon-remove"></span> Dislike
-    </a>
+    </button>
 </div>
 
 {% endfor %}
+
+<h2 class="message text-info">You've gone through all of the foods!</h2>
+
+<script>
+$(document).ready(function () {
+    load();
+});
+
+function like(item) {
+    if (typeof(Storage) !== "undefined") {
+        if (localStorage.preferences) {
+            var saved = localStorage.preferences.split(',');
+            console.log(saved);
+            
+            if (saved.indexOf(item) == -1) {
+                saved.push(item);
+                console.log(saved);
+                localStorage.preferences = saved;
+                load();
+            }
+        } else {
+            localStorage.setItem("preferences", item);
+            load();
+        }
+    }
+}
+
+function dislike(item) {
+    if (typeof(Storage) !== "undefined") {
+        if (localStorage.preferences) {
+            var saved = localStorage.preferences.split(','),
+                index = saved.indexOf(item);
+            
+            if (index !== -1) {
+                delete saved[index];
+                localStorage.preferences = saved;
+            } else {
+                $('.food_item').first().remove();
+            }
+            
+            load();
+        }
+    }
+}
+
+function load() {
+    if (typeof(Storage) !== "undefined") {
+        if (localStorage.preferences) {
+            var checked = localStorage.preferences.split(',');
+
+            $('.food_item').filter(function (index, elm) {
+                var match = false;
+                
+                for (var j = 0; j < checked.length; j++) {
+                    match = elm.getAttribute('data-item') == checked[j];
+                    if (match) return match;
+                }
+            }).remove();
+        }
+        
+        if ($('.food_item').length === 0) {
+            $('.message').show();
+        } else {
+            $('.food_item').first().show();
+        }
+    }
+}
+
+</script>
 
 {% endblock %}
