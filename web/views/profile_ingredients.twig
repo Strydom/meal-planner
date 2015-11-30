@@ -72,8 +72,8 @@
         function load() {
             if (typeof(Storage) !== "undefined") {
                 if (localStorage.preferences) {
-                    var checked = localStorage.preferences;
-                    checked = checked.split(',');
+                    var checked = localStorage.preferences.split(',');
+                    console.log(checked);
                     
                     for (var i = 0; i < checked.length; i++) {
                         $('.list-group').append('<li class="list-group-item food_item"><input type="checkbox" value="' + checked[i] + '" checked> ' + checked[i] + '</li>');

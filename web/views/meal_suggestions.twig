@@ -11,7 +11,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <ul class="list-group">
                 {% for meal in meals %}
                 <li class="list-group-item">
@@ -19,6 +19,9 @@
                     <h3>{{meal.title}}</h3>
                     <a type="button" class="btn btn-lg btn-success" href="#like">
                         <span class="glyphicon glyphicon-ok"></span> Like
+                    </a>
+                    <a type="button" class="btn btn-lg btn-info" href="#make&like">
+                        <span class="glyphicon glyphicon-fire"></span> Make
                     </a>
                     <a type="button" class="btn btn-lg btn-danger" href="#dislike">
                         <span class="glyphicon glyphicon-remove"></span> Dislike
