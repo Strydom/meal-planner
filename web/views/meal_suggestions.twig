@@ -10,27 +10,52 @@
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <ul class="list-group">
-                {% for meal in meals %}
-                <li class="list-group-item">
-                    <img src="{{meal.thumbnail}}">
-                    <h3>{{meal.title}}</h3>
-                    <a type="button" class="btn btn-lg btn-success" href="#like">
-                        <span class="glyphicon glyphicon-ok"></span> Like
-                    </a>
-                    <a type="button" class="btn btn-lg btn-info" href="#make&like">
-                        <span class="glyphicon glyphicon-fire"></span> Make
-                    </a>
-                    <a type="button" class="btn btn-lg btn-danger" href="#dislike">
-                        <span class="glyphicon glyphicon-remove"></span> Dislike
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
+    <div class="row"></div>
 </div>
+
+<script>
+$(document).ready(function () {
+    var likes = {};
+    
+    if (typeof(Storage) !== "undefined") {
+        if (localStorage.preferences) {
+            likes = {likes: localStorage.preferences};
+        }
+    }
+    
+    $.ajax({
+        url : '/assets/php/getRecipe.php',
+        type : 'POST',
+        data: likes,
+        success : function (data) {
+            var allMeals = (JSON.parse(data));
+            
+            for (var i = 0; i < allMeals.length; i++) {
+                var meals = allMeals[i];
+                
+                if (meals != null) {
+                    if (meals[0] != null) {
+                        var colGroup = $('<div />', {class: 'col-lg-6'}).appendTo(".row");
+                        var list = $('<ul />', {class: 'list-group'}).appendTo(colGroup);
+
+                        for (var j = 0; j < meals.length; j++) {
+                            var meal = meals[j];
+
+                            if (meal != null) {
+                                if (meal['thumbnail'] != "") {
+                                list.append('<li class="list-group-item"><img src="' + meal["thumbnail"] + '"><h3>' + meal["title"] + '</h3><a type="button" class="btn btn-lg btn-success" href="#like"><span class="glyphicon glyphicon-ok"></span> Like</a><a type="button" class="btn btn-lg btn-info" href="#make&like"><span class="glyphicon glyphicon-fire"></span> Make</a><a type="button" class="btn btn-lg btn-danger" href="#dislike"><span class="glyphicon glyphicon-remove"></span> Dislike</a></li>');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        error : function () {
+            alert("There was a problem while trying to fetch your suggested meals. Please try again.");
+        }
+    });
+});
+</script>
 
 {% endblock %}

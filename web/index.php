@@ -34,18 +34,9 @@ $app->get('/suggestions/swipe', function() use($app, $foods) {
     return $app['twig']->render('swipe.twig', $foods);
 });
 
-$app->get('/suggestions/meals/{ingredients}', function($ingredients) use($app) {
+$app->get('/suggestions/meals', function() use($app) {
     $app['monolog']->addDebug('logging output.');
-    
-    $ch = curl_init();
-    //i = ingredients, q = query meal, p = page
-    //i=onions,garlic&q=omelet&p=3
-    curl_setopt($ch, CURLOPT_URL, 'http://www.recipepuppy.com/api/?i=' . $ingredients);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    $data = json_decode(curl_exec($ch), true);
-    $results = ['meals'=>$data['results']];
-    
-    return $app['twig']->render('meal_suggestions.twig', $results);
+    return $app['twig']->render('meal_suggestions.twig');
 });
 
 
