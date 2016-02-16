@@ -9,7 +9,7 @@
         <hr>
         
         <a type="button" class="btn btn-lg btn-default" href="/suggestions">
-            <span class="glyphicon glyphicon-th-list"></span> List
+            <span class="glyphicon glyphicon-th"></span> Grid
         </a>
         
         <a type="button" class="btn btn-lg btn-default" href="/suggestions/swipe">
@@ -23,15 +23,26 @@
     {% block display %}
     
     <style>
+        .list-group {
+            text-align: center;
+        }
         .food_item {
-            font-size: 16px;
+            width: 32% !important;
+            display: inline-block;
+            font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
         }
         .food_item:hover {
-            background: #eee;
+            background: #eee !important;
         }
         .food_item input {
+            display: none;
             cursor: pointer;
+        }
+        .food_item img {
+            height: 200px;
+            width: 200px;
         }
     </style>
     
@@ -40,7 +51,11 @@
             <ul class="list-group">
                 {% for food in foods %}
 
-                <li class="list-group-item food_item"><input type="checkbox" value="{{food.name}}"> {{food.name}}</li>
+                <li class="list-group-item food_item">
+                    <input type="checkbox" value="{{food.name}}" />
+                    <img src="{{food.img}}">
+                    {{food.name}}
+                </li>
 
                 {% endfor %}
             </ul>
