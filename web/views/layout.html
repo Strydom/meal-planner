@@ -5,8 +5,14 @@
 </head>
 
 <body>
-  {% include 'nav.html' %}
+    <style>
+        .btn-danger {
+            margin-right: 0 !important;
+        }
+    </style>
+    
+    {% include 'nav.html' %}
 
-  {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 </body>
 </html>
