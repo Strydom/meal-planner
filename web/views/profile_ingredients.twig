@@ -31,13 +31,30 @@
     
     <div class="row">
         <div class="col-lg-12">
-            <ul class="list-group"></ul>
+            <ul class="list-group">
+                <li class="list-group-item group">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <h3 class="navbar-left"></h3>
+                            <a type="button" class="btn btn-lg btn-danger navbar-btn navbar-right" href="#reset"><span class="glyphicon glyphicon-remove"></span> Reset</a>
+                        </div>
+                    </nav>
+                    
+                    <ul id="items" class="list-group"></ul>
+                </li>
+            </ul>
         </div>
     </div>
     
     <script>
         $(document).ready(function (){
             load();
+            
+            $('.btn-danger').click(function () {
+                $('input:checkbox').each(function () {
+                    $(this).trigger('click');
+                });
+            });
             
             $('.food_item').click(function () {
                 $(this).find('input').trigger('click');
@@ -76,7 +93,7 @@
                     console.log(checked);
                     
                     for (var i = 0; i < checked.length; i++) {
-                        $('.list-group').append('<li class="list-group-item food_item"><input type="checkbox" value="' + checked[i] + '" checked> ' + checked[i] + '</li>');
+                        $('#items').append('<li class="list-group-item food_item"><input type="checkbox" value="' + checked[i] + '" checked> ' + checked[i] + '</li>');
                     }
                 }
             }
