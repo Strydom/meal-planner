@@ -33,7 +33,7 @@
                 <li class="list-group-item group">
                     <nav class="navbar navbar-default">
                         <div class="container-fluid">
-                            <h3 class="navbar-left">Ingredients</h3>
+                            <h3 class="navbar-left">Ingredients <span class="count-likes">(0)</span></h3>
                             <a type="button" class="btn btn-lg btn-danger navbar-btn navbar-right" href="#reset"><span class="glyphicon glyphicon-remove"></span> Reset</a>
                         </div>
                     </nav>
@@ -87,10 +87,15 @@
         function load() {
             if (typeof(Storage) !== "undefined") {
                 if (localStorage.preferences) {
-                    var checked = localStorage.preferences.split(',');
-                    console.log(checked);
+                    var checked = localStorage.preferences.split(','),
+                        length = checked.length;
                     
-                    for (var i = 0; i < checked.length; i++) {
+                    console.log(length);
+                    
+                    $('.count-likes').html('(' + length + ')');
+                    
+                    
+                    for (var i = 0; i < length; i++) {
                         $('#items').append('<li class="list-group-item food_item"><input type="checkbox" value="' + checked[i] + '" checked> ' + checked[i] + '</li>');
                     }
                 }
